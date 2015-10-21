@@ -1,5 +1,4 @@
 #import "Sms.h"
-#import <Cordova/NSArray+Comparisons.h>
 
 @implementation Sms
 @synthesize callbackID;
