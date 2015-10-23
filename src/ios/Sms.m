@@ -30,23 +30,15 @@
         composeViewController.messageComposeDelegate = self;
         
         NSString* body = [command.arguments objectAtIndex:1];
-        if (body != nil) {
-            BOOL replaceLineBreaks = [[command.arguments objectAtIndex:3] boolValue];
-            if (replaceLineBreaks) {
-                body = [body stringByReplacingOccurrencesOfString: @"\\n" withString: @"\n"];
-            }
-            [composeViewController setBody:body];
+        if (body == (id)[NSNull null] || body.length == 0 ) body = @"Create Message...";
+        BOOL replaceLineBreaks = [[command.arguments objectAtIndex:3] boolValue];
+        if (replaceLineBreaks) {
+            body = [body stringByReplacingOccurrencesOfString: @"\\n" withString: @"\n"];
         }
+        [composeViewController setBody:body];
         
-        NSString* recipientsString = [command.arguments objectAtIndex:0];
-        NSMutableArray* recipients = [recipientsString componentsSeparatedByString:@","];
-        if (recipients != nil) {
-            if ([recipients.firstObject isEqual: @""]) {
-                [recipients replaceObjectAtIndex:0 withObject:@"?"];
-            }
-            
-            [composeViewController setRecipients:recipients];
-        }
+        NSArray* recipients = [command.arguments objectAtIndex:0];
+        [composeViewController setRecipients:recipients];
         dispatch_async(dispatch_get_main_queue(), ^{
             [self.viewController presentViewController:composeViewController animated:YES completion:nil];
         });

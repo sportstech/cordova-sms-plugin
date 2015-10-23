@@ -5,19 +5,15 @@ var exec = require('cordova/exec');
 var sms = {};
 
 function convertPhoneToArray(phone) {
-    if (typeof phone === 'string' && phone.indexOf(',') !== -1) {
-        phone = phone.split(',');
-    }
-    if (Object.prototype.toString.call(phone) !== '[object Array]') {
-        phone = [phone];
-    }
+    if (typeof phone === 'string') return phone.split(',');
     return phone;
 }
 
 
-sms.send = function(phone, message, options, success, failure) {
+sms.send = function(phoneString, message, options, success, failure) {
+    console.log('phoneString: ', phoneString)
     // parsing phone numbers
-    phone = convertPhoneToArray(phone);
+    var phone = convertPhoneToArray(phoneString);
 
     // parsing options
     var replaceLineBreaks = false;
