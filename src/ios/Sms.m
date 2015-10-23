@@ -1,6 +1,8 @@
 #import "Sms.h"
 
-@implementation Sms
+@implementation Sms {
+  NSString *_tempStoredFile;
+}
 @synthesize callbackID;
 
 // - (CDVPlugin *)initWithWebViewEngine:(CDVWebViewEngineProtocol *)theWebView {
@@ -18,11 +20,7 @@
 }
 
 - (NSString *)parseBody:(NSString*)body replaceLineBreaks:(BOOL)replaceLineBreaks {
-    if (body == (id)[NSNull null] || body.length == 0 ){
-      return @"Create Message...";
-    } else {
-      return (replaceLineBreaks) ? [body stringByReplacingOccurrencesOfString: @"\\n" withString: @"\n"] : body;
-    }
+    return (replaceLineBreaks) ? [body stringByReplacingOccurrencesOfString: @"\\n" withString: @"\n"] : body;
 }
 
 - (NSMutableArray *)parseRecipients:(id)param {

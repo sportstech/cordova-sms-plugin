@@ -22,7 +22,6 @@ var sms = function() {
         }
 
         if (typeof options === 'string') { // ensuring backward compatibility
-            window.console.warn('[DEPRECATED] Passing a string as a third argument is deprecated. Please refer to the documentation to pass the right parameter: https://github.com/cordova-sms/cordova-sms-plugin.');
             opts.android.intent = options;
         } else if (typeof options === 'object') {
             opts.replaceLineBreaks = options.replaceLineBreaks || false;
@@ -34,10 +33,14 @@ var sms = function() {
 
         return opts;
     };
+    
+    function processMessage(message) {
+      return message || "";
+    }
 
     return {
         send: function(recipients, message, options, success, failure) {
-            return exec(success, failure, 'Sms', 'send', [recipients, message, parseOptions(options)]);
+            return exec(success, failure, 'Sms', 'send', [recipients, processMessage(message), parseOptions(options)]);
         }
     };
 }();

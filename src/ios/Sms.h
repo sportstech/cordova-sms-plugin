@@ -7,7 +7,6 @@
 @interface Sms : CDVPlugin <MFMessageComposeViewControllerDelegate>
 
 @property(strong) NSString* callbackID;
-@property(retain) NSString* tempStoredFile;
 
 - (void)send:(CDVInvokedUrlCommand*)command;
 
