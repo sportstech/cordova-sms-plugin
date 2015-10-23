@@ -3,10 +3,10 @@
 @implementation Sms
 @synthesize callbackID;
 
-- (CDVPlugin *)initWithWebView:(UIWebView *)theWebView {
-    self = (Sms *)[super initWithWebView:theWebView];
-    return self;
-}
+// - (CDVPlugin *)initWithWebViewEngine:(CDVWebViewEngineProtocol *)theWebView {
+//     self = (Sms *)[super initWithWebViewEngine:theWebView];
+//     return self;
+// }
 
 - (bool)isSMSAvailable {
     Class messageClass = (NSClassFromString(@"MFMessageComposeViewController"));
@@ -18,7 +18,11 @@
 }
 
 - (NSString *)parseBody:(NSString*)body replaceLineBreaks:(BOOL)replaceLineBreaks {
-    return ((id)body != [NSNull null] && replaceLineBreaks) ? [body stringByReplacingOccurrencesOfString: @"\\n" withString: @"\n"] : body;
+    if (body == (id)[NSNull null] || body.length == 0 ){
+      return @"Create Message...";
+    } else {
+      return (replaceLineBreaks) ? [body stringByReplacingOccurrencesOfString: @"\\n" withString: @"\n"] : body;
+    }
 }
 
 - (NSMutableArray *)parseRecipients:(id)param {
