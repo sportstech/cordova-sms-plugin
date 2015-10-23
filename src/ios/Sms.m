@@ -3,10 +3,10 @@
 @implementation Sms
 @synthesize callbackID;
 
-// - (CDVPlugin *)initWithWebViewEngine:(CDVWebViewEngineProtocol *)theWebView {
-//     self = (Sms *)[super initWithWebViewEngine:theWebView];
-//     return self;
-// }
+- (CDVPlugin *)initWithWebView:(UIWebView *)theWebView {
+    self = (Sms *)[super initWithWebView:theWebView];
+    return self;
+}
 
 - (bool)isSMSAvailable {
     Class messageClass = (NSClassFromString(@"MFMessageComposeViewController"));
