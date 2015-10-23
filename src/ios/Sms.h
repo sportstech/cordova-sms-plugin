@@ -1,6 +1,5 @@
 #import <Foundation/Foundation.h>
 #import <Cordova/CDVPlugin.h>
-#import <Cordova/NSData+Base64.h>
 
 #import <MessageUI/MessageUI.h>
 #import <MessageUI/MFMessageComposeViewController.h>
