@@ -3,11 +3,6 @@
 @implementation Sms
 @synthesize callbackID;
 
-// - (CDVPlugin *)initWithWebViewEngine:(CDVWebViewEngineProtocol *)theWebView {
-//     self = (Sms *)[super initWithWebViewEngine:theWebView];
-//     return self;
-// }
-
 - (void)send:(CDVInvokedUrlCommand*)command {
     [self.commandDelegate runInBackground:^{
         self.callbackID = command.callbackId;
